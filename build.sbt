@@ -2,9 +2,12 @@ import com.typesafe.sbt.packager.docker.ExecCmd
 
 name := "sbt-getting-started"
 
-version := "0.1"
+ThisBuild / version := "1.2"
 
 scalaVersion := "2.12.8"
+
+ThisBuild / licenses ++= Seq(("MIT", url("http://opensource.org/licenses/MIT")))
+resolvers += Resolver.jcenterRepo
 
 lazy val calculators = project
   .dependsOn(api)
