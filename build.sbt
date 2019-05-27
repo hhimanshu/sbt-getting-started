@@ -7,4 +7,4 @@ scalaVersion := "2.12.8"
 //val root = project.in(file("."))
 //  .aggregate(calculators)
 
-val calculators = project
+lazy val calculators = project
