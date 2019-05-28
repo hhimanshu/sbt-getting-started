@@ -1,4 +1,3 @@
-
 /**
   * This calculator computes the future value of your yearly regular deposits
   * at a given rate for given number of years
