@@ -26,7 +26,7 @@ object Currency {
   val currencyConverter: Map[String, Double] = Forex.getExchangeRates()
 
   /**
-    * @param value: example: "100000 EUR"
+    * @param value: example: "1000 USD"
     * @return: Currency
     */
   def apply(value: String): Currency = {
