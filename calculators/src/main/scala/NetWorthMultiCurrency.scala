@@ -41,4 +41,10 @@ object Currency {
   }
 }
 
+/**
+  *
+  * @param amount: example 100
+  * @param code: example USD
+  * @param valueInEuros: example 98.23
+  */
 case class Currency(amount: Long, code: String, valueInEuros: Double)
