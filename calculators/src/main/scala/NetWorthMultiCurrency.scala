@@ -8,8 +8,8 @@ object NetWorthMultiCurrency extends App {
   def calculate(assets: Double, liabilities: Double): Double = assets - liabilities
 
   override def main(args: Array[String]): Unit = {
-    val assets = args(0)
-    val liabilities = args(1)
+    val assets = args(0) // example: "100000 EUR,9000 USD"
+    val liabilities = args(1) // example: "59100 EUR,12200 USD"
 
     val assetsInEuros = assets.split(",").map(Currency(_))
     val liabilitiesInEuros = liabilities.split(",").map(Currency(_))
