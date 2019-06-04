@@ -8,6 +8,8 @@ scalaVersion := "2.12.8"
 
 ThisBuild / licenses ++= Seq(("MIT", url("http://opensource.org/licenses/MIT")))
 
+publish/skip := true
+
 lazy val calculators = project
   .dependsOn(api)
   .enablePlugins(JavaAppPackaging)
@@ -26,3 +28,9 @@ lazy val api = project
   .settings(
     libraryDependencies ++= Dependencies.apiDependencies
   )
+
+
+//resolvers += Resolver.JCenterRepository
+//lazy val test = project.settings(
+//  libraryDependencies += ("calculators" % "calculators_2.12" % "1.0")
+//)
