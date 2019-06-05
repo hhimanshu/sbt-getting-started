@@ -245,18 +245,97 @@ reload
 ```
 
 ## Module 04: Project Lifecycle using SBT
+### 03: Creating the project base
+```sbtshell
+name
+```
 
-## Calculators
-### Compound Interest Calculator
-https://www.ajdesigner.com/phpinterest/interest_regular_deposits_p.php#ajscroll
+### 04: Creating the first calculator
+```sbtshell
+;reload ;compile
+projects
+calculators/compile
+calculators/clean
+project calculators
+;clean ;compile
+projects
+reload
+projects
+;clean ;compile
+;reload
+projects
+;clean ;compile
+;clean ;run
+;clean ;calculators/run 100 20
+```
 
-## 3rd Party Dependencies
+### 05: Understanding Scopes and Executing Test
+```sbtshell
+test
+calculators/run
+calculators/Test/run
+```
+
+### 06: Adding another Calculator
+```sbtshell
+compile
+calculators/runMain CompoundInterest 5000 5 10
+```
+
+#### References
+[Compound Interest Calculator](https://www.ajdesigner.com/phpinterest/interest_regular_deposits_p.php#ajscroll)
+
+## 05: Refactoring project for bigger changes
+### 02: Adding external libraries in sbt
+```sbtshell
+unmanagedBase
+```
+
+#### References
 [requests-scala](https://github.com/lihaoyi/requests-scala)
+[scala-xml](https://github.com/scala/scala-xml)
 
+### 03: Working with 3rd party libraries
+```sbtshell
+api/console
+```
 
-## References
+```scala
+val r = requests.get("https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml")
+r.statusCode
+r.headers
+r.headers("content-type")
+import scala.xml._  // (that's why we needed scala-xml)
+r.text
+val xmlResponse = XML.loadString(r.text)
+val currencyCodes: Seq[String] = (xmlResponse \\ "@currency").map(node => node.text)
+// Explain how to fetch attributes in xml in scala, refer to medium article
+val euroToCurrencyMultipliers: Seq[Double] = (xmlResponse \\ "@rate").map(node => node.text.toDouble)
+val currencyCodeMultipliers = (currencyCodes zip euroToCurrencyMultipliers).toMap
+```
+
+#### References
 [European Central Bank Currency API](https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml)
 [Working with XML in Scala](https://medium.com/@harittweets/working-with-xml-in-scala-bd6271a1e178)
+
+### 04: Execute Tests using ScalaTest
+```sbtshell
+test
+Test/parallelExecution
+~test
+```
+
+#### References
+[ScalaTest](http://www.scalatest.org/)
+
+### 06: Adding dependencies between sub-projects
+```sbtshell
+calculators/runMain NetWorthMultiCurrency "100000 EUR,9000 USD" "59100 EUR,12200 USD"
+```
+
+## 06: Open-sourcing the project
+
+#### References
 [Docker Desktop](https://www.docker.com/products/docker-desktop)
 [Travis-CI Scala](https://docs.travis-ci.com/user/languages/scala/#projects-using-sbt)
 [Bintray: Open-source your project](https://bintray.com/)
@@ -264,5 +343,5 @@ https://www.ajdesigner.com/phpinterest/interest_regular_deposits_p.php#ajscroll
 [Heroku Procfile](https://devcenter.heroku.com/articles/procfile)
 
 ---
-# ToDO:
+# Todo:
 - Add bintray link for the package
