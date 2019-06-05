@@ -1,4 +1,10 @@
 # Scala Build Tool - Getting Started
+This documentation provides the commands, the branches and the references for the course.
+The commands are further organized as needed in each video clip.
+
+If you feel something is missing, please make a change, and open a pull request to contribute!
+
+Happy Learning!
 
 
 ## Course Artifacts
@@ -7,7 +13,7 @@
 
 
 ## Git Branches for the Course
-** so that you can time-travel the changes
+**so that you can time-travel the changes**
 ```sh
 m4_0_initial_commit
 m4_1_first_calculator
