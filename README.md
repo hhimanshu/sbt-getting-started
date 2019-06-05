@@ -1,5 +1,23 @@
 # Scala Build Tool - Getting Started
 
+
+## Course Artifacts
+[Open-Sourced Libraries on Bintray](https://bintray.com/beta/#/hhimanshu/maven/calculators?tab=overview)  
+[Live API Deployed on Heroku](https://h2-sbt101.herokuapp.com/rates)  
+
+
+## Git Branches for the Course
+** so that you can time-travel the changes
+```sh
+m4_0_initial_commit
+m4_1_first_calculator
+m5_1_currency_api
+m5_2_networth_multi_currency
+m6_1_packaging
+m6_2_bintray_oss
+m6_3_deploy_api
+```
+
 ## Module 02: Introduction to SBT
 
 ### How to install JDK 8?
@@ -351,15 +369,40 @@ docker run -it calculators:0.1.0-SNAPSHOT 100 20
 ```
 
 #### References
-[sbt-native-packager](https://sbt-native-packager.readthedocs.io/en/latest/)  
+[sbt-native-packager](https://sbt-native-packager.readthedocs.io/en/latest/)    
+[Docker Desktop](https://www.docker.com/products/docker-desktop)      
+
+### 03: Continuous Integration using Travis-CI
+#### References  
+[Travis-CI Scala](https://docs.travis-ci.com/user/languages/scala/#projects-using-sbt)
+
+### 04: Publishing artifacts on Bintray
+```sbtshell
+bintrayChangeCredentials
+;clean ;publish
+```
+
+```sh
+ls -ltr ~/.ivy2/cache/calculators/calculators_2.12/jars
+```
+
+#### References  
+[Bintray: Open-source your project](https://bintray.com/)
+
+### 05: Creating API for deployment
+```sbtshell
+;reload ;api/runMain WebServer
+```
+
+```sh
+curl -v http://localhost:8080/rates
+```
 
 #### References
-[Docker Desktop](https://www.docker.com/products/docker-desktop)  
-[Travis-CI Scala](https://docs.travis-ci.com/user/languages/scala/#projects-using-sbt)  
-[Bintray: Open-source your project](https://bintray.com/)  
+[akka-http](https://doc.akka.io/docs/akka-http/current/index.html)  
+
+### 06: Deploying the API on Heroku
+#### References
+[Heroku](https://www.heroku.com/)  
 [Heroku CLI tools](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)  
 [Heroku Procfile](https://devcenter.heroku.com/articles/procfile)  
-
----
-# Todo:
-- Add bintray link for the package
