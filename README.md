@@ -8,49 +8,38 @@
 
 ### Verify the Java 8 is installed
 ```sh
-~> java -version
-openjdk version "1.8.0_202"
-OpenJDK Runtime Environment (AdoptOpenJDK)(build 1.8.0_202-b08)
-OpenJDK 64-Bit Server VM (AdoptOpenJDK)(build 25.202-b08, mixed mode)
-~>
+java -version
 ```
 
 ### How to install sbt?
 #### Mac
-[Homebrew](https://brew.sh/)
+[Homebrew](https://brew.sh/)  
+
 ##### Verify if Homebrew is installed
 ```sh
-~> brew --version
-Homebrew 2.0.5
-Homebrew/homebrew-core (git revision 7f58; last commit 2019-03-19)
-Homebrew/homebrew-cask (git revision c9d97; last commit 2019-03-19)
-~>
+brew --version
 ```
+
 #### Install sbt using Homebrew
 ```sh
 brew install sbt
 ```
+
 ##### Verify if sbt is installed
 ```sh
-~> sbt sbtVersion
-[info] Loading settings for project global-plugins from idea.sbt ...
-[info] Loading global plugins from /Users/hhimanshu/.sbt/1.0/plugins
-[info] Loading project definition from /Users/hhimanshu/project
-[info] Set current project to hhimanshu (in build file:/Users/hhimanshu/)
-[info] 1.2.8
-~>
+sbt sbtVersion
 ```
 
 #### Windows
-[Link](https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Windows.html)
+[Link](https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Windows.html)  
 
 #### Linux
-[Ubuntu and other Debian-based distributions](https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Linux.html#Ubuntu+and+other+Debian-based+distributions)  
-[Red Hat Enterprise Linux and other RPM-based distributions](https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Linux.html#Red+Hat+Enterprise+Linux+and+other+RPM-based+distributions)
-[Gentoo](https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Linux.html#Gentoo)
+[Ubuntu and other Debian-based distributions](https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Linux.html#Ubuntu+and+other+Debian-based+distributions)    
+[Red Hat Enterprise Linux and other RPM-based distributions](https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Linux.html#Red+Hat+Enterprise+Linux+and+other+RPM-based+distributions)  
+[Gentoo](https://www.scala-sbt.org/1.x/docs/Installing-sbt-on-Linux.html#Gentoo)  
 
 ### How to install IntelliJ IDEA Community Edition?  
-[Link](https://www.jetbrains.com/idea/download)
+[Link](https://www.jetbrains.com/idea/download)  
 
 
 
@@ -283,7 +272,7 @@ calculators/runMain CompoundInterest 5000 5 10
 ```
 
 #### References
-[Compound Interest Calculator](https://www.ajdesigner.com/phpinterest/interest_regular_deposits_p.php#ajscroll)
+[Compound Interest Calculator](https://www.ajdesigner.com/phpinterest/interest_regular_deposits_p.php#ajscroll)  
 
 ## 05: Refactoring project for bigger changes
 ### 02: Adding external libraries in sbt
@@ -292,8 +281,8 @@ unmanagedBase
 ```
 
 #### References
-[requests-scala](https://github.com/lihaoyi/requests-scala)
-[scala-xml](https://github.com/scala/scala-xml)
+[requests-scala](https://github.com/lihaoyi/requests-scala)  
+[scala-xml](https://github.com/scala/scala-xml)  
 
 ### 03: Working with 3rd party libraries
 ```sbtshell
@@ -315,8 +304,8 @@ val currencyCodeMultipliers = (currencyCodes zip euroToCurrencyMultipliers).toMa
 ```
 
 #### References
-[European Central Bank Currency API](https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml)
-[Working with XML in Scala](https://medium.com/@harittweets/working-with-xml-in-scala-bd6271a1e178)
+[European Central Bank Currency API](https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml)  
+[Working with XML in Scala](https://medium.com/@harittweets/working-with-xml-in-scala-bd6271a1e178)  
 
 ### 04: Execute Tests using ScalaTest
 ```sbtshell
@@ -326,7 +315,7 @@ Test/parallelExecution
 ```
 
 #### References
-[ScalaTest](http://www.scalatest.org/)
+[ScalaTest](http://www.scalatest.org/)  
 
 ### 06: Adding dependencies between sub-projects
 ```sbtshell
@@ -334,13 +323,42 @@ calculators/runMain NetWorthMultiCurrency "100000 EUR,9000 USD" "59100 EUR,12200
 ```
 
 ## 06: Open-sourcing the project
+### 02: Packaging the artifacts
+```sbtshell
+;clean ;stage
+```
+
+```sh
+ls calculators/target/scala-2.12/
+ls api/target/scala-2.12/
+
+calculators/target/universal/stage/bin/net-worth 100 20
+calculators/target/universal/stage/bin/compound-interest 5000 5 10
+api/target/universal/stage/bin/api
+```
+
+```sh
+docker -v
+```
+
+```sbtshell
+docker:publishLocal
+```
+
+```sh
+docker images
+docker run -it calculators:0.1.0-SNAPSHOT 100 20
+```
 
 #### References
-[Docker Desktop](https://www.docker.com/products/docker-desktop)
-[Travis-CI Scala](https://docs.travis-ci.com/user/languages/scala/#projects-using-sbt)
-[Bintray: Open-source your project](https://bintray.com/)
-[Heroku CLI tools](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
-[Heroku Procfile](https://devcenter.heroku.com/articles/procfile)
+[sbt-native-packager](https://sbt-native-packager.readthedocs.io/en/latest/)  
+
+#### References
+[Docker Desktop](https://www.docker.com/products/docker-desktop)  
+[Travis-CI Scala](https://docs.travis-ci.com/user/languages/scala/#projects-using-sbt)  
+[Bintray: Open-source your project](https://bintray.com/)  
+[Heroku CLI tools](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)  
+[Heroku Procfile](https://devcenter.heroku.com/articles/procfile)  
 
 ---
 # Todo:
